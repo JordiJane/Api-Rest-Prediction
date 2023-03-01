@@ -3,14 +3,13 @@ import requests
 from satelite import Satelite
 from typing import List
 from positions import Positions
+from passes import Passes
 
 APIKEY = "E8SWFK-FDRUMV-SV6LN2-500F"
 
 
 def go_to_url():
-    r = urlopen(
-        "https://api.n2yo.com/rest/v1/satellite/&apiKey=E8SWFK-FDRUMV-SV6LN2-500F"
-    )
+    r = urlopen(f"https://api.n2yo.com/rest/v1/satellite/&apiKey={APIKEY}")
 
     print(r.read())
     r.close()
@@ -18,7 +17,7 @@ def go_to_url():
 
 def get_tle():
     response = requests.get(
-        "https://api.n2yo.com/rest/v1/satellite/tle/25544&apiKey=E8SWFK-FDRUMV-SV6LN2-500F"
+        f"https://api.n2yo.com/rest/v1/satellite/tle/25544&apiKey={APIKEY}"
     )
     response.raise_for_status()
 
@@ -36,7 +35,7 @@ def get_tle():
 
 def get_satelit_position():
     response = requests.get(
-        "https://api.n2yo.com/rest/v1/satellite/positions/25544/41.702/-76.014/0/2/&apiKey=E8SWFK-FDRUMV-SV6LN2-500F"
+        f"https://api.n2yo.com/rest/v1/satellite/positions/25544/41.702/-76.014/0/2/&apiKey={APIKEY}"
     )
     response.raise_for_status()
 
@@ -49,6 +48,7 @@ def get_satelit_position():
 
     positions = satelite_dict.get("positions")
     positions_dict = positions[0]
+
     satlatitude = positions_dict.get("satlatitude")
     satlongitude = positions_dict.get("satlongitude")
     sataltitude = positions_dict.get("sataltitude")
@@ -74,3 +74,56 @@ def get_satelit_position():
     )
 
     return satelite, positions
+
+
+def get_visual_passes():
+    response = requests.get(
+        f"https://api.n2yo.com/rest/v1/satellite/visualpasses/25544/41.702/-76.014/0/2/300/&apiKey={APIKEY}"
+    )
+    response.raise_for_status()
+
+    satelite_dict: dict = response.json()
+
+    info = satelite_dict.get("info")
+    sat_id = info.get("satid")
+    sat_name = info.get("satname")
+    transactions_count = info.get("transactionscount")
+
+    passes = satelite_dict.get("passes")
+    passes_dict = passes[0]
+
+    startAz = passes_dict.get("startAz")
+    startAzCompass = passes_dict.get("startAzCompass")
+    startEl = passes_dict.get("startEl")
+    startUTC = passes_dict.get("startUTC")
+    maxAz = passes_dict.get("maxAz")
+    maxAzCompass = passes_dict.get("maxAzCompass")
+    maxEl = passes_dict.get("maxEl")
+    maxUTC = passes_dict.get("maxUTC")
+    endAz = passes_dict.get("endAz")
+    endAzCompass = passes_dict.get("endAzCompass")
+    endEl = passes_dict.get("endEl")
+    endUTC = passes_dict.get("endUTC")
+    mag = passes_dict.get("mag")
+    duration = passes_dict.get("duration")
+
+    satelite: Satelite = Satelite(sat_id, sat_name, transactions_count)
+
+    passes: Passes = Passes(
+        startAz,
+        startAzCompass,
+        startEl,
+        startUTC,
+        maxAz,
+        maxAzCompass,
+        maxEl,
+        maxUTC,
+        endAz,
+        endAzCompass,
+        endEl,
+        endUTC,
+        mag,
+        duration,
+    )
+
+    return satelite, passes

@@ -1,4 +1,4 @@
-from go_to_api_n2yo import go_to_url, get_tle, get_satelit_position
+from go_to_api_n2yo import go_to_url, get_tle, get_satelit_position, get_visual_passes
 
 
 def main():
@@ -25,6 +25,28 @@ def main():
     print("dec:", positions.dec)
     print("timestamp:", positions.timestamp)
     print("eclipsed", positions.eclipsed)
+    satelite3, passes = get_visual_passes()
+    print("\n")
+    print("Get visual Passes")
+    print("info")
+    print("Satelite ID:", satelite3.sat_id)
+    print("Satelite Name:", satelite3.sat_name)
+    print("Satelite Transactions Count:", satelite3.transactions_count)
+    print("Visual Passes")
+    print("startAz:", passes.startAz)
+    print("startAzCompass:", passes.startAzCompass)
+    print("startEl:", passes.startEl)
+    print("startUTC:", passes.startUTC)
+    print("maxAz:", passes.maxAz)
+    print("maxAzCompass:", passes.maxAzCompass)
+    print("maxEl:", passes.maxEl)
+    print("maxUTC:", passes.maxUTC)
+    print("endAz:", passes.endAz)
+    print("endAzCompass:", passes.endAzCompass)
+    print("endEl:", passes.endEl)
+    print("endUTC:", passes.endUTC)
+    print("mag:", passes.mag)
+    print("duration:", passes.duration)
 
 
 if __name__ == "__main__":
