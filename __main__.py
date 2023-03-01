@@ -1,4 +1,6 @@
 from go_to_api_n2yo import go_to_url, get_tle, get_satelit_position
+
+
 def main():
     go_to_url()
     satelite = get_tle()
@@ -20,7 +22,9 @@ def main():
     print("ra:", positions.ra)
     print("dec:", positions.dec)
     print("timestamp:", positions.timestamp)
-    print("eclipsed",positions.eclipsed)
-if __name__ == '__main__':
+    print("eclipsed", positions.eclipsed)
+
+
+if __name__ == "__main__":
     # This code won't run if this file is imported.
     main()

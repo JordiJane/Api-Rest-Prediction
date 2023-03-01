@@ -9,7 +9,18 @@ class Positions:
     timestamp: int
     eclipsed: bool
 
-    def __init__(self, satlatitude, satlongitude, sataltitude, azimuth, elevation, ra, dec, timestamp, eclipsed) -> None:
+    def __init__(
+        self,
+        satlatitude,
+        satlongitude,
+        sataltitude,
+        azimuth,
+        elevation,
+        ra,
+        dec,
+        timestamp,
+        eclipsed,
+    ) -> None:
         self.satlatitude = satlatitude
         self.satlongitude = satlongitude
         self.sataltitude = sataltitude
