@@ -13,6 +13,7 @@ class Passes:
     endUTC: int
     mag: float
     duration: int
+    startVisibility: int
 
     def __init__(
         self,
@@ -30,6 +31,7 @@ class Passes:
         endUTC,
         mag,
         duration,
+        startVisibility,
     ) -> None:
         self.startAz = startAz
         self.startAzCompass = startAzCompass
@@ -45,3 +47,4 @@ class Passes:
         self.endUTC = endUTC
         self.mag = mag
         self.duration = duration
+        self.startVisibility = startVisibility
