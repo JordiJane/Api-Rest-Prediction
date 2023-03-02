@@ -1,4 +1,10 @@
-from go_to_api_n2yo import go_to_url, get_tle, get_satelit_position, get_visual_passes
+from go_to_api_n2yo import (
+    go_to_url,
+    get_tle,
+    get_satelit_position,
+    get_visual_passes,
+    get_radio_passes,
+)
 
 
 def main():
@@ -32,6 +38,7 @@ def main():
     print("Satelite ID:", satelite3.sat_id)
     print("Satelite Name:", satelite3.sat_name)
     print("Satelite Transactions Count:", satelite3.transactions_count)
+    print("Satelite Passes Count:", satelite3.passes_count)
     print("Visual Passes")
     print("startAz:", passes.startAz)
     print("startAzCompass:", passes.startAzCompass)
@@ -47,6 +54,31 @@ def main():
     print("endUTC:", passes.endUTC)
     print("mag:", passes.mag)
     print("duration:", passes.duration)
+    print("startVisibility:", passes.startVisibility)
+    print("\n")
+    satelite4, passes2 = get_radio_passes()
+    print("Radio Passes")
+    print("info")
+    print("Satelite ID:", satelite4.sat_id)
+    print("Satelite Name:", satelite4.sat_name)
+    print("Satelite Transactions Count:", satelite4.transactions_count)
+    print("Satelite Passes Count:", satelite4.passes_count)
+    print("passes")
+    print("startAz:", passes2.startAz)
+    print("startAzCompass:", passes2.startAzCompass)
+    print("startEl:", passes2.startEl)
+    print("startUTC:", passes2.startUTC)
+    print("maxAz:", passes2.maxAz)
+    print("maxAzCompass:", passes2.maxAzCompass)
+    print("maxEl:", passes2.maxEl)
+    print("maxUTC:", passes2.maxUTC)
+    print("endAz:", passes2.endAz)
+    print("endAzCompass:", passes2.endAzCompass)
+    print("endEl:", passes2.endEl)
+    print("endUTC:", passes2.endUTC)
+    print("mag:", passes2.mag)
+    print("duration:", passes2.duration)
+    print("startVisibility:", passes2.startVisibility)
 
 
 if __name__ == "__main__":
