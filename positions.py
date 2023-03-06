@@ -1,7 +1,7 @@
 class Positions:
-    satlatitude: float
-    satlongitude: float
-    sataltitude: float
+    sat_latitude: float
+    sat_longitude: float
+    sat_altitude: float
     azimuth: float
     elevation: float
     ra: float
@@ -11,9 +11,9 @@ class Positions:
 
     def __init__(
         self,
-        satlatitude,
-        satlongitude,
-        sataltitude,
+        sat_latitude,
+        sat_longitude,
+        sat_altitude,
         azimuth,
         elevation,
         ra,
@@ -21,9 +21,9 @@ class Positions:
         timestamp,
         eclipsed,
     ) -> None:
-        self.satlatitude = satlatitude
-        self.satlongitude = satlongitude
-        self.sataltitude = sataltitude
+        self.sat_latitude = sat_latitude
+        self.sat_longitude = sat_longitude
+        self.sat_altitude = sat_altitude
         self.azimuth = azimuth
         self.elevation = elevation
         self.ra = ra
